@@ -30,6 +30,12 @@
   --maxw:1640px;
 }
 
+@media (max-width:760px){
+  :root{
+    --pad:20px;
+  }
+}
+
 *{box-sizing:border-box; margin:0; padding:0;}
 html, body{background:var(--cream); color:var(--ink); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
 body{
@@ -129,17 +135,21 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer;}
 
 .nav__logo{
   display:flex; align-items:center;
-  height:119px;
+  height:110px;
 }
 .nav__logo img{
   height:100%;
   width:auto;
   display:block;
-  /* the logo is a square tile on black — give it a thin gold edge so it reads on light bg too */
-  transition:box-shadow .4s ease;
 }
-.nav.is-light .nav__logo img{
-  box-shadow:0 0 0 1px rgba(196,168,79,.4);
+@media (max-width:900px){
+  .nav__logo{height:54px;}
+}
+@media (max-width:520px){
+  .nav__logo{height:46px;}
+}
+@media (max-width:380px){
+  .nav__logo{height:42px;}
 }
 .nav__menu{
   display:flex; gap:38px;
@@ -157,15 +167,96 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer;}
 .nav__menu a:hover::after{right:0;}
 .nav__cta{display:flex; gap:10px; align-items:center;}
 
+/* burger button -- hidden on desktop */
+.nav__burger{
+  display:none;
+  width:44px; height:44px;
+  align-items:center; justify-content:center;
+  position:relative;
+  z-index:120;
+  color:inherit;
+}
+.nav__burger span{
+  position:absolute;
+  left:12px; right:12px;
+  height:1.5px;
+  background:currentColor;
+  transition:transform .35s ease, opacity .25s ease, top .35s ease;
+}
+.nav__burger span:nth-child(1){top:16px;}
+.nav__burger span:nth-child(2){top:22px;}
+.nav__burger span:nth-child(3){top:28px;}
+.nav.is-open .nav__burger span:nth-child(1){top:22px; transform:rotate(45deg);}
+.nav.is-open .nav__burger span:nth-child(2){opacity:0;}
+.nav.is-open .nav__burger span:nth-child(3){top:22px; transform:rotate(-45deg);}
+
+/* mobile menu drawer */
+.nav__drawer{
+  position:fixed;
+  inset:0;
+  background:rgba(10,10,10,.98);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  z-index:110;
+  display:flex;
+  flex-direction:column;
+  padding:90px 24px 40px;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-10px);
+  transition:opacity .35s ease, transform .35s ease, visibility 0s linear .35s;
+  color:var(--cream);
+}
+.nav.is-open .nav__drawer{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+  transition:opacity .35s ease, transform .35s ease, visibility 0s;
+}
+.nav__drawer-menu{
+  display:flex; flex-direction:column;
+  gap:0;
+  border-top:1px solid var(--line-on-dark);
+}
+.nav__drawer-menu a{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:22px 4px;
+  font-family:var(--serif);
+  font-size:28px;
+  font-weight:400;
+  letter-spacing:-.01em;
+  border-bottom:1px solid var(--line-on-dark);
+  color:var(--cream);
+}
+.nav__drawer-menu a em{font-style:italic; color:var(--gold); font-family:var(--sans); font-size:11px; letter-spacing:.3em; font-weight:500;}
+.nav__drawer-foot{
+  margin-top:auto;
+  padding-top:30px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.nav__drawer-foot .btn{justify-content:center;}
+.nav__drawer-meta{
+  margin-top:24px;
+  font-size:10px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--muted-on-dark);
+  line-height:2;
+}
+.nav__drawer-meta b{color:var(--gold); font-weight:500;}
+
 @media (max-width:1180px){
   .nav__menu{display:none;}
 }
 @media (max-width:900px){
   .nav__logo{height:40px;}
+  .nav__burger{display:inline-flex;}
+  .nav__cta .btn--ghost.btn--sm{display:none;}
+  .nav__cta .btn--gold.btn--sm{display:none;}
+  .nav.is-open{color:var(--cream);}
+  body.menu-open{overflow:hidden;}
 }
 @media (max-width:520px){
-  .nav__cta .btn--ghost.btn--sm{display:none;}
   .nav__logo{height:36px;}
+  .nav{padding:14px var(--pad);}
 }
 
 /* ---------- hero ---------- */
@@ -477,14 +568,56 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer;}
 }
 .hscroll__hint svg{color:var(--gold);}
 
-/* mobile fallback for horizontal scroll: native scroller */
+/* mobile fallback for horizontal scroll: native touch swipe with snap */
 @media (max-width:900px){
   .hscroll__container{height:auto;}
   .hscroll__sticky{position:static; height:auto;}
-  .hscroll__track-wrap{overflow-x:auto; padding:30px 0 80px; scrollbar-width:none;}
+  .hscroll__head{
+    padding:60px var(--pad) 0;
+    grid-template-columns:1fr;
+    align-items:start;
+  }
+  .hscroll__head-right{text-align:left;}
+  .hscroll__counter{justify-content:flex-start; font-size:32px;}
+  .hscroll__counter .total{font-size:18px;}
+
+  .hscroll__track-wrap{
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:30px 0 30px;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    scroll-padding-left:0;
+  }
   .hscroll__track-wrap::-webkit-scrollbar{display:none;}
-  .hscroll__progress, .hscroll__hint{display:none;}
-  .hcard{width:78vw; height:80vw; max-height:520px;}
+  .hscroll__track{
+    gap:0;
+    padding:0;
+    transform:none !important;
+    will-change:auto;
+  }
+  .hcard{
+    width:100vw;
+    max-width:none;
+    height:auto;
+    aspect-ratio:4/5;
+    max-height:none;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+  }
+  .hscroll__progress{
+    position:static;
+    margin:0 var(--pad) 0;
+    height:2px;
+    background:var(--line-on-dark);
+  }
+  .hscroll__hint{
+    position:static;
+    padding:24px var(--pad) 50px;
+    font-size:10px;
+  }
+  .hscroll__hint svg{display:none;}
 }
 
 /* ---------- chairs grid ---------- */
@@ -905,7 +1038,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer;}
   color:var(--muted-on-dark);
 }
 .contact__bottom-left{display:flex; align-items:center; gap:18px;}
-.contact__logo{height:42px; width:auto; display:block;}
+.contact__logo{
+  height:54px; width:auto; display:block;
+}
 
 @media (max-width:1000px){
   .contact__cta{grid-template-columns:1fr;}
@@ -940,14 +1075,184 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer;}
 .reveal-delay-1{transition-delay:.08s;}
 .reveal-delay-2{transition-delay:.16s;}
 .reveal-delay-3{transition-delay:.24s;}
+
+/* ========================================== */
+/* ============ MOBILE OVERRIDES ============ */
+/* ========================================== */
+@media (max-width:640px){
+  body{font-size:15px; line-height:1.55;}
+
+  /* type scale -- smaller for mobile */
+  .h-section{font-size:38px; line-height:1.02;}
+  .lede{font-size:17px; line-height:1.35;}
+  .eyebrow{font-size:10px; letter-spacing:.28em;}
+
+  /* buttons */
+  .btn{padding:15px 22px; font-size:11px; letter-spacing:.16em; gap:10px;}
+  .btn--xl{padding:18px 26px; font-size:12px;}
+  .btn--sm{padding:11px 16px; font-size:10px;}
+
+  /* HERO */
+  .hero{min-height:600px; height:100svh;}
+  .hero__inner{padding:110px var(--pad) 36px;}
+  .hero__title{
+    font-size:clamp(48px, 18vw, 78px);
+    letter-spacing:.02em;
+    line-height:.95;
+    white-space:nowrap;
+  }
+  .hero__bottom{
+    padding-top:30px;
+    gap:22px;
+  }
+  .hero__tagline{font-size:18px; line-height:1.35; max-width:none;}
+  .hero__ctas{width:100%; gap:10px;}
+  .hero__ctas .btn{flex:1; justify-content:center;}
+  .hero__meta{
+    bottom:18px;
+    font-size:9px; letter-spacing:.24em;
+  }
+  .hero__meta::before{width:28px;}
+
+  /* ABOUT */
+  .about{padding:80px var(--pad);}
+  .about__head{gap:24px; margin-bottom:50px;}
+  .about__head p{font-size:20px; line-height:1.35;}
+  .thesis{padding:32px 0; min-height:auto;}
+  .thesis__num{margin-bottom:24px; font-size:12px;}
+  .thesis__title{font-size:26px; margin-bottom:12px;}
+  .thesis__body{font-size:14px;}
+  .thesis__icon{padding-top:24px;}
+  .thesis__icon svg{width:36px; height:36px;}
+
+  /* HORIZONTAL SCROLL */
+  .hscroll__head{padding:70px var(--pad) 0; gap:18px;}
+  .hscroll__head .eyebrow{margin-bottom:14px;}
+
+  /* CHAIRS -- full-bleed grid on mobile */
+  .chairs{padding:80px 0;}
+  .chairs__head{
+    padding:0 var(--pad);
+    margin-bottom:40px;
+    gap:20px;
+  }
+  .chairs__head p{font-size:15px;}
+  .chairs__grid{
+    grid-template-columns:1fr;
+    gap:0;
+    padding:0;
+  }
+  .chair{
+    border-bottom:1px solid var(--line);
+    padding-bottom:24px;
+  }
+  .chair:last-child{border-bottom:0;}
+  .chair__img{
+    aspect-ratio:1/1;
+    margin-bottom:18px;
+  }
+  .chair__meta{
+    padding:0 var(--pad);
+  }
+  .chair__name{font-size:22px;}
+
+  /* SMART -- full-bleed photos */
+  .smart{padding:80px 0;}
+  .smart__inner{
+    grid-template-columns:1fr;
+    gap:36px;
+    padding:0;
+  }
+  .smart__visual{
+    grid-template-columns:1fr;
+    gap:0;
+    height:auto;
+  }
+  .smart__visual .pic{aspect-ratio:1/1;}
+  .smart__visual .pic--main{
+    grid-row:auto;
+    aspect-ratio:4/5;
+  }
+  .smart__visual .pic--detail-a{aspect-ratio:1/1; height:auto;}
+  .smart__visual .pic--detail-b{
+    aspect-ratio:1/1; height:auto;
+    padding:40px;
+  }
+  .smart__visual .pic--detail-b .qi-symbol{font-size:60px;}
+  .smart__copy{padding:0 var(--pad);}
+  .smart__copy h2{margin-bottom:20px;}
+  .smart__copy .lede{margin-bottom:30px; font-size:17px;}
+  .smart__specs{margin-bottom:30px;}
+  .smart__specs li{grid-template-columns:36px 1fr; gap:16px; padding:18px 0;}
+  .smart__specs .icon{width:36px; height:36px;}
+  .smart__specs .txt{font-size:17px;}
+  .smart__specs .txt small{font-size:10px;}
+
+  /* PROCESS */
+  .process{padding:80px var(--pad);}
+  .process__head{gap:20px; margin-bottom:40px;}
+  .process__head p{font-size:15px;}
+  .step{padding:30px 0; min-height:auto;}
+  .step__num{font-size:48px; margin-bottom:18px; gap:8px;}
+  .step__num small{font-size:10px;}
+  .step__title{font-size:22px;}
+  .step__body{font-size:14px;}
+
+  /* REVIEWS */
+  .reviews{padding:80px var(--pad);}
+  .reviews__head{gap:20px; margin-bottom:40px;}
+  .reviews__head p{font-size:15px;}
+  .reviews__grid{gap:16px;}
+  .review{padding:32px 26px 28px;}
+  .review__quote-mark{font-size:72px;}
+  .review__text{font-size:17px; margin-bottom:24px;}
+  .review__stars{top:32px; right:26px; font-size:11px;}
+  .review__avatar{width:42px; height:42px; font-size:18px;}
+
+  /* CONTACT */
+  .contact{padding:80px var(--pad) 30px;}
+  .contact::before{font-size:80px;}
+  .contact__cta{gap:30px; padding-bottom:50px; margin-bottom:40px;}
+  .contact__cta-side .lede{font-size:16px;}
+  .contact__buttons{width:100%; gap:10px;}
+  .contact__buttons .btn{flex:1; justify-content:center; min-width:0;}
+  .contact__buttons .btn--xl{font-size:11px; padding:18px 20px;}
+  .contact__grid{gap:32px; padding-bottom:50px;}
+  .contact__col h4{margin-bottom:16px;}
+  .contact__col p, .contact__col a{font-size:18px;}
+  .contact__pay{font-size:12px; padding:14px 18px;}
+  .contact__bottom{font-size:10px; gap:10px;}
+  .contact__logo{height:32px;}
+
+  /* FAB */
+  .fab{width:56px; height:56px; right:18px; bottom:18px;}
+}
+
+/* extra tight @ 375px */
+@media (max-width:380px){
+  :root{--pad:16px;}
+  .h-section{font-size:34px;}
+  .hero__title{font-size:60px;}
+  .hero__tagline{font-size:17px;}
+  .hero__inner{padding:100px var(--pad) 30px;}
+  .hero__bottom .btn{padding:16px 18px; font-size:10.5px; gap:8px;}
+  .thesis__title{font-size:24px;}
+  .smart__visual .pic--detail-b .qi-symbol{font-size:52px;}
+  .smart__specs .txt{font-size:16px;}
+  .step__num{font-size:42px;}
+  .review__text{font-size:16px;}
+  .contact__col p, .contact__col a{font-size:17px;}
+  .contact__buttons .btn--xl{font-size:10px; letter-spacing:.12em; padding:16px 14px;}
+  .nav__drawer-menu a{font-size:24px; padding:20px 4px;}
+}
 </style>
 </head>
 <body>
 
 <!-- =================== NAV =================== -->
-<nav class="nav" id="nav" data-screen-label="nav">
+<nav class="nav" id="nav" data-screen-label="nav" style="font-size: 12px; padding: 14px 70px; font-weight: 500; letter-spacing: 2.6px; height: 110px">
   <a href="#top" class="nav__logo" aria-label="АТМОСФЕРА">
-    <img src="assets/logo-atmosfera.png" alt="АТМОСФЕРА — столи та стільці"/>
+    <img src="assets/logo-atmosfera.png" alt="АТМОСФЕРА — столи та стільці" style="width: 150px; height: 70px; opacity: 1"/>
   </a>
   <div class="nav__menu" aria-label="меню">
     <a href="#stoly">Столи</a>
@@ -965,6 +1270,30 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer;}
       <span class="dot"></span>
       Зателефонувати
     </a>
+    <button class="nav__burger" id="navBurger" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="nav__drawer" id="navDrawer" aria-hidden="true">
+    <nav class="nav__drawer-menu" aria-label="Мобільне меню">
+      <a href="#stoly">Столи <em>01</em></a>
+      <a href="#stiltsi">Стільці <em>02</em></a>
+      <a href="#smart">Новинка <em>03</em></a>
+      <a href="#process">Як це працює <em>04</em></a>
+      <a href="#kontakty">Контакти <em>05</em></a>
+    </nav>
+    <div class="nav__drawer-foot">
+      <a href="tel:+380955684142" class="btn btn--gold">
+        <span class="dot"></span>
+        +380 95 568 41 42
+      </a>
+      <a href="https://t.me/atm_store_4ROOM" target="_blank" rel="noopener" class="btn btn--ghost-light">Написати в Telegram</a>
+      <div class="nav__drawer-meta">
+        <div>ТЦ 4ROOM · Київ</div>
+        <div><b>10:00 – 20:00</b> · без вихідних</div>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -1365,6 +1694,20 @@ chairsGrid.innerHTML = CHAIRS.map((c,i)=>`
   </article>
 `).join('');
 
+/* -------- burger menu -------- */
+const navEl = document.getElementById('nav');
+const burger = document.getElementById('navBurger');
+const drawer = document.getElementById('navDrawer');
+function setMenu(open){
+  navEl.classList.toggle('is-open', open);
+  document.body.classList.toggle('menu-open', open);
+  burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+burger.addEventListener('click', ()=> setMenu(!navEl.classList.contains('is-open')));
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> setMenu(false)));
+document.addEventListener('keydown', e => { if(e.key === 'Escape') setMenu(false); });
+
 /* -------- nav: solidify on scroll + theme detection -------- */
 const nav = document.getElementById('nav');
 const darkSections = ['top','stoly','smart','kontakty'];
@@ -1427,6 +1770,23 @@ function hscrollUpdate(){
 window.addEventListener('scroll', hscrollUpdate, {passive:true});
 window.addEventListener('resize', hscrollUpdate);
 hscrollUpdate();
+
+/* mobile: update counter as the user swipes the horizontal carousel */
+const hWrap = document.querySelector('.hscroll__track-wrap');
+if(hWrap){
+  const onTouchScroll = () => {
+    if(window.innerWidth > 900) return;
+    const w = hWrap.clientWidth || window.innerWidth;
+    const idx = Math.min(TABLES.length, Math.max(1, Math.round(hWrap.scrollLeft / w) + 1));
+    hCurrent.textContent = String(idx).padStart(2,'0');
+    if(hFill){
+      const max = hWrap.scrollWidth - hWrap.clientWidth;
+      const p = max > 0 ? hWrap.scrollLeft / max : 0;
+      hFill.style.width = (p*100).toFixed(2)+'%';
+    }
+  };
+  hWrap.addEventListener('scroll', onTouchScroll, {passive:true});
+}
 </script>
 
 </body>
