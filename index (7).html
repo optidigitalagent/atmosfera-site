@@ -1,0 +1,1433 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8" />
+<title>АТМОСФЕРА — дизайнерські столи та стільці на замовлення</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="АТМОСФЕРА — власне виробництво столів і стільців під індивідуальне замовлення. Будь-який розмір, колір, матеріал. Шоурум у ТЦ 4ROOM, Київ." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+
+<style>
+/* ---------- foundation ---------- */
+:root{
+  --ink:#0A0A0A;
+  --gold:#C4A84F;
+  --gold-deep:#A48833;
+  --cream:#F5F0E8;
+  --cream-2:#EDE6D8;
+  --line:rgba(10,10,10,.12);
+  --line-on-dark:rgba(245,240,232,.14);
+  --muted:rgba(10,10,10,.55);
+  --muted-on-dark:rgba(245,240,232,.6);
+
+  --serif:'Cormorant Garamond', 'Times New Roman', serif;
+  --sans:'Manrope', system-ui, sans-serif;
+
+  --pad:clamp(20px, 4vw, 72px);
+  --maxw:1640px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html, body{background:var(--cream); color:var(--ink); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+body{
+  font-family:var(--sans);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+img{display:block; max-width:100%; height:auto;}
+a{color:inherit; text-decoration:none;}
+button{font:inherit; color:inherit; background:none; border:0; cursor:pointer;}
+
+/* ---------- type scale ---------- */
+.eyebrow{
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:var(--muted);
+}
+.eyebrow--gold{color:var(--gold-deep);}
+.eyebrow--on-dark{color:var(--gold);}
+
+.h-display{
+  font-family:var(--serif);
+  font-weight:400;
+  letter-spacing:-.01em;
+  line-height:.95;
+}
+.h-section{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(40px, 6vw, 92px);
+  line-height:1;
+  letter-spacing:-.015em;
+}
+.h-section em{font-style:italic; color:var(--gold-deep);}
+.lede{
+  font-family:var(--serif);
+  font-weight:300;
+  font-style:italic;
+  font-size:clamp(20px, 2vw, 28px);
+  line-height:1.35;
+  color:var(--muted);
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  padding:18px 30px;
+  font-family:var(--sans);
+  font-size:13px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:600;
+  border:1px solid transparent;
+  border-radius:999px;
+  transition:all .35s ease;
+  white-space:nowrap;
+}
+.btn .dot{width:6px; height:6px; border-radius:50%; background:currentColor; opacity:.7;}
+.btn--gold{background:var(--gold); color:var(--ink);}
+.btn--gold:hover{background:var(--ink); color:var(--gold);}
+.btn--ghost{border-color:currentColor;}
+.btn--ghost:hover{background:var(--ink); color:var(--cream); border-color:var(--ink);}
+.btn--ghost-light{border-color:rgba(245,240,232,.4); color:var(--cream);}
+.btn--ghost-light:hover{background:var(--cream); color:var(--ink); border-color:var(--cream);}
+.btn--xl{padding:24px 40px; font-size:14px;}
+.btn--sm{padding:13px 22px; font-size:11px;}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px var(--pad);
+  background:transparent;
+  transition:background .4s ease, padding .4s ease, color .4s ease;
+  color:var(--cream);
+}
+.nav.is-solid{
+  background:rgba(10,10,10,.92);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  padding:14px var(--pad);
+  border-bottom:1px solid var(--line-on-dark);
+}
+.nav.is-light{color:var(--ink);}
+.nav.is-light.is-solid{background:rgba(245,240,232,.94); border-bottom:1px solid var(--line);}
+
+.nav__logo{
+  display:flex; align-items:center;
+  height:48px;
+}
+.nav__logo img{
+  height:100%;
+  width:auto;
+  display:block;
+  /* the logo is a square tile on black — give it a thin gold edge so it reads on light bg too */
+  transition:box-shadow .4s ease;
+}
+.nav.is-light .nav__logo img{
+  box-shadow:0 0 0 1px rgba(196,168,79,.4);
+}
+.nav__menu{
+  display:flex; gap:38px;
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:500;
+}
+.nav__menu a{position:relative; padding:6px 0;}
+.nav__menu a::after{
+  content:""; position:absolute; left:0; right:100%; bottom:0;
+  height:1px; background:var(--gold);
+  transition:right .4s ease;
+}
+.nav__menu a:hover::after{right:0;}
+.nav__cta{display:flex; gap:10px; align-items:center;}
+
+@media (max-width:1180px){
+  .nav__menu{display:none;}
+}
+@media (max-width:900px){
+  .nav__logo{height:40px;}
+}
+@media (max-width:520px){
+  .nav__cta .btn--ghost.btn--sm{display:none;}
+  .nav__logo{height:36px;}
+}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  height:100vh;
+  min-height:680px;
+  background:var(--ink);
+  color:var(--cream);
+  overflow:hidden;
+}
+.hero__bg{
+  position:absolute; inset:0;
+  background-size:cover;
+  background-position:center;
+  filter:brightness(.62) contrast(1.05);
+  transform:scale(1.04);
+  transition:transform 8s ease;
+}
+.hero.is-loaded .hero__bg{transform:scale(1);}
+.hero::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,0) 35%, rgba(10,10,10,0) 60%, rgba(10,10,10,.7) 100%),
+    linear-gradient(90deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,0) 60%);
+  pointer-events:none;
+}
+.hero__inner{
+  position:relative; z-index:2;
+  height:100%;
+  display:grid;
+  grid-template-rows:1fr auto;
+  padding:140px var(--pad) 50px;
+  max-width:var(--maxw);
+  margin:0 auto;
+}
+.hero__title{
+  font-size:clamp(60px, 12vw, 240px);
+  letter-spacing:.04em;
+  font-weight:300;
+  align-self:end;
+  margin-bottom:.05em;
+  white-space:nowrap;
+}
+.hero__title .ch{
+  display:inline-block;
+  opacity:0; transform:translateY(40px);
+  animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.hero__title .ch:nth-child(1){animation-delay:.1s}
+.hero__title .ch:nth-child(2){animation-delay:.18s}
+.hero__title .ch:nth-child(3){animation-delay:.26s}
+.hero__title .ch:nth-child(4){animation-delay:.34s}
+.hero__title .ch:nth-child(5){animation-delay:.42s}
+.hero__title .ch:nth-child(6){animation-delay:.5s}
+.hero__title .ch:nth-child(7){animation-delay:.58s}
+.hero__title .ch:nth-child(8){animation-delay:.66s}
+.hero__title .ch:nth-child(9){animation-delay:.74s}
+@keyframes rise{to{opacity:1; transform:translateY(0)}}
+
+.hero__bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:40px;
+  padding-top:50px;
+  border-top:1px solid var(--line-on-dark);
+  opacity:0; transform:translateY(20px);
+  animation:rise 1s ease 1s forwards;
+}
+.hero__tagline{
+  max-width:520px;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(20px, 2vw, 28px);
+  line-height:1.3;
+  color:var(--cream);
+}
+.hero__tagline span{color:var(--gold);}
+.hero__ctas{display:flex; gap:14px; flex-wrap:wrap;}
+
+.hero__meta{
+  position:absolute;
+  bottom:30px; left:var(--pad);
+  z-index:3;
+  display:flex; align-items:center; gap:14px;
+  font-size:11px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--muted-on-dark);
+  opacity:0;
+  animation:rise 1s ease 1.4s forwards;
+}
+.hero__meta::before{content:""; width:50px; height:1px; background:var(--gold);}
+
+.hero__corner{
+  position:absolute;
+  top:140px; right:var(--pad);
+  z-index:3;
+  text-align:right;
+  font-size:11px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--muted-on-dark);
+  line-height:2;
+  opacity:0;
+  animation:rise 1s ease 1.2s forwards;
+}
+.hero__corner b{color:var(--gold); font-weight:500;}
+
+@media (max-width:760px){
+  .hero__bottom{flex-direction:column; align-items:flex-start;}
+  .hero__corner{display:none;}
+}
+
+/* ---------- about / theses ---------- */
+.about{
+  padding:clamp(80px,12vw,180px) var(--pad);
+  max-width:var(--maxw);
+  margin:0 auto;
+}
+.about__head{
+  display:grid;
+  grid-template-columns:1fr 1.4fr;
+  gap:60px;
+  margin-bottom:clamp(60px,8vw,110px);
+  align-items:end;
+}
+.about__head p{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(22px, 2.2vw, 32px);
+  line-height:1.3;
+  color:var(--ink);
+  max-width:640px;
+}
+.about__head p em{color:var(--gold-deep); font-style:italic;}
+
+.theses{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px solid var(--line);
+}
+.thesis{
+  padding:50px 38px 38px 0;
+  border-right:1px solid var(--line);
+  display:flex; flex-direction:column;
+  min-height:340px;
+  position:relative;
+}
+.thesis:last-child{border-right:0; padding-right:0;}
+.thesis:not(:first-child){padding-left:38px;}
+.thesis__num{
+  font-family:var(--serif);
+  font-size:14px;
+  font-weight:400;
+  letter-spacing:.3em;
+  color:var(--gold-deep);
+  margin-bottom:42px;
+}
+.thesis__title{
+  font-family:var(--serif);
+  font-size:clamp(28px, 3vw, 40px);
+  line-height:1.05;
+  font-weight:400;
+  margin-bottom:18px;
+  letter-spacing:-.01em;
+}
+.thesis__title em{font-style:italic; color:var(--gold-deep);}
+.thesis__body{
+  font-size:15px;
+  line-height:1.6;
+  color:var(--muted);
+  max-width:300px;
+}
+.thesis__icon{
+  margin-top:auto;
+  padding-top:36px;
+  color:var(--gold-deep);
+}
+
+@media (max-width:900px){
+  .about__head{grid-template-columns:1fr; gap:30px;}
+  .theses{grid-template-columns:1fr;}
+  .thesis{border-right:0; border-bottom:1px solid var(--line); padding:40px 0; min-height:auto;}
+  .thesis:not(:first-child){padding-left:0;}
+  .thesis:last-child{border-bottom:0;}
+}
+
+/* ---------- horizontal scroll (the showpiece) ---------- */
+.hscroll{
+  background:var(--ink);
+  color:var(--cream);
+  position:relative;
+}
+.hscroll__container{
+  height:600vh; /* drives scroll length */
+  position:relative;
+}
+.hscroll__sticky{
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.hscroll__head{
+  padding:90px var(--pad) 0;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:end;
+  gap:30px;
+  flex:0 0 auto;
+}
+.hscroll__head h2{margin:0;}
+.hscroll__head h2 em{color:var(--gold);}
+.hscroll__head .eyebrow{margin-bottom:18px;}
+.hscroll__head-right{
+  text-align:right;
+  font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--muted-on-dark);
+}
+.hscroll__counter{
+  font-family:var(--serif);
+  font-size:48px;
+  color:var(--cream);
+  letter-spacing:.05em;
+  display:flex; gap:8px; align-items:baseline;
+  margin-top:8px;
+  justify-content:flex-end;
+}
+.hscroll__counter .sep{color:var(--gold);}
+.hscroll__counter .total{color:var(--muted-on-dark); font-size:24px;}
+
+.hscroll__track-wrap{
+  flex:1 1 auto;
+  position:relative;
+  display:flex;
+  align-items:center;
+  padding:50px 0 60px;
+}
+.hscroll__track{
+  display:flex;
+  gap:36px;
+  padding:0 var(--pad);
+  will-change:transform;
+}
+.hcard{
+  position:relative;
+  flex:0 0 auto;
+  width:clamp(320px, 38vw, 540px);
+  height:clamp(440px, 60vh, 660px);
+  overflow:hidden;
+  background:#151515;
+}
+.hcard img{
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform 1.4s cubic-bezier(.2,.7,.2,1);
+}
+.hcard:hover img{transform:scale(1.04);}
+.hcard__meta{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  padding:24px 26px;
+  display:flex; justify-content:space-between; align-items:flex-end;
+  background:linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,.85) 100%);
+  color:var(--cream);
+}
+.hcard__name{
+  font-family:var(--serif);
+  font-size:22px;
+  letter-spacing:.01em;
+}
+.hcard__name em{font-style:italic; color:var(--gold);}
+.hcard__sub{
+  font-size:10px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--muted-on-dark);
+  margin-top:4px;
+}
+.hcard__num{
+  font-family:var(--serif);
+  font-size:14px;
+  letter-spacing:.2em;
+  color:var(--gold);
+}
+
+.hscroll__progress{
+  position:absolute;
+  left:var(--pad); right:var(--pad);
+  bottom:36px;
+  height:1px;
+  background:var(--line-on-dark);
+}
+.hscroll__progress-fill{
+  height:100%;
+  background:var(--gold);
+  width:0%;
+  transition:width .12s linear;
+}
+.hscroll__hint{
+  position:absolute;
+  bottom:54px; left:var(--pad);
+  font-size:11px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--muted-on-dark);
+  display:flex; align-items:center; gap:12px;
+}
+.hscroll__hint svg{color:var(--gold);}
+
+/* mobile fallback for horizontal scroll: native scroller */
+@media (max-width:900px){
+  .hscroll__container{height:auto;}
+  .hscroll__sticky{position:static; height:auto;}
+  .hscroll__track-wrap{overflow-x:auto; padding:30px 0 80px; scrollbar-width:none;}
+  .hscroll__track-wrap::-webkit-scrollbar{display:none;}
+  .hscroll__progress, .hscroll__hint{display:none;}
+  .hcard{width:78vw; height:80vw; max-height:520px;}
+}
+
+/* ---------- chairs grid ---------- */
+.chairs{
+  background:#FFFFFF;
+  padding:clamp(100px,12vw,180px) var(--pad);
+}
+.chairs__head{
+  max-width:var(--maxw);
+  margin:0 auto clamp(60px,8vw,100px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:end;
+}
+.chairs__head p{
+  font-size:16px;
+  line-height:1.6;
+  color:var(--muted);
+  max-width:480px;
+}
+.chairs__grid{
+  max-width:var(--maxw);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:48px 32px;
+}
+.chair{
+  position:relative;
+  cursor:pointer;
+}
+.chair__img{
+  background:#FAFAFA;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  margin-bottom:16px;
+}
+.chair__img img{
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform 1s ease, filter .6s ease;
+}
+.chair:hover .chair__img img{transform:scale(1.04);}
+.chair__meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:14px;
+}
+.chair__name{
+  font-family:var(--serif);
+  font-size:20px;
+  line-height:1.1;
+}
+.chair__name em{font-style:italic; color:var(--gold-deep);}
+.chair__tag{
+  font-size:10px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+@media (max-width:1100px){.chairs__grid{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:780px){
+  .chairs__grid{grid-template-columns:repeat(2,1fr); gap:30px 20px;}
+  .chairs__head{grid-template-columns:1fr;}
+}
+
+/* ---------- smart cabinet showcase ---------- */
+.smart{
+  background:var(--ink);
+  color:var(--cream);
+  padding:clamp(100px,12vw,180px) var(--pad);
+  overflow:hidden;
+}
+.smart__inner{
+  max-width:var(--maxw);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:clamp(40px,6vw,100px);
+  align-items:center;
+}
+.smart__visual{
+  position:relative;
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:18px;
+  height:clamp(520px, 70vh, 760px);
+}
+.smart__visual .pic{
+  overflow:hidden;
+  position:relative;
+}
+.smart__visual .pic img{width:100%; height:100%; object-fit:cover;}
+.smart__visual .pic--main{
+  grid-row:span 2;
+}
+.smart__visual .pic--detail-a{}
+.smart__visual .pic--detail-b{
+  background:#1a1a1a;
+  display:grid; place-items:center;
+  padding:30px;
+}
+.smart__visual .pic--detail-b .badge-pulse{
+  width:100%; height:100%;
+  border:1px solid var(--gold);
+  position:relative;
+  display:grid; place-items:center;
+}
+.smart__visual .pic--detail-b .badge-pulse::before,
+.smart__visual .pic--detail-b .badge-pulse::after{
+  content:""; position:absolute; inset:0;
+  border:1px solid var(--gold);
+  opacity:0;
+  animation:pulse 3s ease-out infinite;
+}
+.smart__visual .pic--detail-b .badge-pulse::after{animation-delay:1.5s;}
+@keyframes pulse{
+  0%{transform:scale(1); opacity:.5;}
+  100%{transform:scale(1.18); opacity:0;}
+}
+.smart__visual .pic--detail-b .qi{
+  text-align:center;
+}
+.smart__visual .pic--detail-b .qi-symbol{
+  font-family:var(--serif); font-size:80px; color:var(--gold); line-height:1;
+}
+.smart__visual .pic--detail-b .qi-label{
+  font-size:11px; letter-spacing:.35em; color:var(--cream); text-transform:uppercase; margin-top:14px;
+}
+
+.smart__copy h2{margin-bottom:30px;}
+.smart__copy h2 em{color:var(--gold);}
+.smart__copy .lede{color:var(--muted-on-dark); margin-bottom:42px; max-width:480px;}
+.smart__specs{
+  list-style:none;
+  border-top:1px solid var(--line-on-dark);
+  margin:0 0 42px;
+}
+.smart__specs li{
+  display:grid;
+  grid-template-columns:42px 1fr;
+  gap:20px;
+  padding:22px 0;
+  border-bottom:1px solid var(--line-on-dark);
+  align-items:center;
+}
+.smart__specs .icon{
+  width:42px; height:42px;
+  border:1px solid var(--gold);
+  display:grid; place-items:center;
+  color:var(--gold);
+  border-radius:50%;
+}
+.smart__specs .txt{
+  font-family:var(--serif);
+  font-size:20px;
+  line-height:1.25;
+}
+.smart__specs .txt small{
+  display:block;
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted-on-dark);
+  margin-top:4px;
+}
+
+@media (max-width:900px){
+  .smart__inner{grid-template-columns:1fr;}
+  .smart__visual{height:auto; grid-template-rows:auto;}
+  .smart__visual .pic--main{height:60vw; min-height:340px;}
+  .smart__visual .pic--detail-a, .smart__visual .pic--detail-b{height:200px;}
+}
+
+/* ---------- process ---------- */
+.process{
+  padding:clamp(100px,12vw,180px) var(--pad);
+  max-width:var(--maxw);
+  margin:0 auto;
+}
+.process__head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  margin-bottom:clamp(60px,8vw,100px);
+  align-items:end;
+}
+.process__head p{
+  color:var(--muted);
+  max-width:460px;
+  font-size:16px; line-height:1.6;
+}
+.process__steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+}
+.step{
+  padding:48px 28px 38px 0;
+  border-right:1px solid var(--line);
+  position:relative;
+  min-height:300px;
+  display:flex; flex-direction:column;
+}
+.step:last-child{border-right:0; padding-right:0;}
+.step:not(:first-child){padding-left:28px;}
+.step__num{
+  font-family:var(--serif);
+  font-size:64px;
+  font-weight:300;
+  color:var(--ink);
+  line-height:1;
+  margin-bottom:30px;
+  display:flex; align-items:baseline; gap:10px;
+}
+.step__num small{
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:.3em;
+  color:var(--gold-deep);
+  font-weight:500;
+}
+.step__title{
+  font-family:var(--serif);
+  font-size:26px;
+  line-height:1.15;
+  margin-bottom:14px;
+}
+.step__title em{font-style:italic; color:var(--gold-deep);}
+.step__body{font-size:14px; line-height:1.55; color:var(--muted);}
+
+@media (max-width:1000px){
+  .process__steps{grid-template-columns:1fr 1fr;}
+  .step{border-right:0; border-bottom:1px solid var(--line); padding:36px 0; min-height:auto;}
+  .step:nth-child(odd){padding-right:24px; border-right:1px solid var(--line);}
+  .step:nth-child(even){padding-left:24px;}
+  .process__head{grid-template-columns:1fr;}
+}
+@media (max-width:600px){
+  .process__steps{grid-template-columns:1fr;}
+  .step:nth-child(odd){padding-right:0; border-right:0;}
+  .step:nth-child(even){padding-left:0;}
+}
+
+/* ---------- reviews ---------- */
+.reviews{
+  background:var(--cream-2);
+  padding:clamp(100px,12vw,180px) var(--pad);
+}
+.reviews__inner{max-width:var(--maxw); margin:0 auto;}
+.reviews__head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  margin-bottom:clamp(60px,8vw,100px);
+  align-items:end;
+}
+.reviews__head p{color:var(--muted); max-width:440px; font-size:16px; line-height:1.6;}
+.reviews__grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+.review{
+  background:var(--cream);
+  padding:48px 40px 42px;
+  display:flex; flex-direction:column;
+  border:1px solid var(--line);
+  position:relative;
+}
+.review__quote-mark{
+  font-family:var(--serif);
+  font-size:90px;
+  line-height:.6;
+  color:var(--gold);
+  margin-bottom:10px;
+  font-style:italic;
+}
+.review__text{
+  font-family:var(--serif);
+  font-size:19px;
+  line-height:1.45;
+  margin-bottom:36px;
+  flex:1;
+  text-wrap:pretty;
+}
+.review__author{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
+.review__avatar{
+  width:48px; height:48px; border-radius:50%;
+  background:var(--ink); color:var(--gold);
+  display:grid; place-items:center;
+  font-family:var(--serif); font-size:20px;
+}
+.review__name{font-weight:600; font-size:14px; letter-spacing:.04em;}
+.review__sub{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-top:3px;}
+.review__stars{
+  position:absolute; top:48px; right:40px;
+  color:var(--gold);
+  letter-spacing:2px;
+  font-size:12px;
+}
+
+@media (max-width:900px){
+  .reviews__grid{grid-template-columns:1fr;}
+  .reviews__head{grid-template-columns:1fr;}
+}
+
+/* ---------- contact / footer ---------- */
+.contact{
+  background:var(--ink);
+  color:var(--cream);
+  padding:clamp(100px,12vw,180px) var(--pad) 40px;
+  position:relative;
+  overflow:hidden;
+}
+.contact::before{
+  content:"АТМОСФЕРА";
+  position:absolute;
+  left:-2vw; right:-2vw; bottom:-2vw;
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(120px, 22vw, 360px);
+  letter-spacing:.04em;
+  color:rgba(196,168,79,.06);
+  line-height:.85;
+  white-space:nowrap;
+  pointer-events:none;
+}
+.contact__inner{
+  max-width:var(--maxw);
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+.contact__cta{
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:60px;
+  align-items:end;
+  padding-bottom:clamp(60px,8vw,100px);
+  border-bottom:1px solid var(--line-on-dark);
+  margin-bottom:60px;
+}
+.contact__cta h2 em{color:var(--gold);}
+.contact__cta-side{display:flex; flex-direction:column; gap:18px;}
+.contact__cta-side .lede{color:var(--muted-on-dark);}
+.contact__buttons{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
+
+.contact__grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:40px;
+  padding-bottom:80px;
+}
+.contact__col h4{
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:var(--gold);
+  margin-bottom:24px;
+}
+.contact__col p, .contact__col a{
+  display:block;
+  font-family:var(--serif);
+  font-size:22px;
+  line-height:1.35;
+  color:var(--cream);
+  margin-bottom:8px;
+  transition:color .3s ease;
+}
+.contact__col a:hover{color:var(--gold);}
+.contact__col small{
+  font-family:var(--sans);
+  font-size:12px;
+  color:var(--muted-on-dark);
+  letter-spacing:.1em;
+  display:block;
+  margin-top:6px;
+}
+.contact__socials{display:flex; flex-direction:column; gap:10px;}
+.contact__pay{
+  display:flex; align-items:center; gap:14px;
+  margin-top:20px;
+  padding:18px 22px;
+  border:1px solid var(--line-on-dark);
+  border-radius:6px;
+  font-family:var(--sans);
+  font-size:13px;
+  color:var(--muted-on-dark);
+  max-width:max-content;
+}
+.contact__pay b{color:var(--gold); font-weight:500;}
+
+.contact__bottom{
+  border-top:1px solid var(--line-on-dark);
+  padding-top:28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:14px;
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted-on-dark);
+}
+.contact__bottom-left{display:flex; align-items:center; gap:18px;}
+.contact__logo{height:42px; width:auto; display:block;}
+
+@media (max-width:1000px){
+  .contact__cta{grid-template-columns:1fr;}
+  .contact__grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:600px){
+  .contact__grid{grid-template-columns:1fr;}
+}
+
+/* ---------- floating call button (mobile/all sizes - subtle) ---------- */
+.fab{
+  position:fixed;
+  right:24px; bottom:24px;
+  z-index:90;
+  width:60px; height:60px;
+  border-radius:50%;
+  background:var(--gold);
+  color:var(--ink);
+  display:none;
+  place-items:center;
+  box-shadow:0 14px 40px rgba(10,10,10,.35);
+  transition:transform .3s ease, background .3s ease;
+}
+.fab:hover{transform:scale(1.05); background:var(--ink); color:var(--gold);}
+@media (max-width:760px){
+  .fab{display:grid;}
+}
+
+/* ---------- entrance reveal ---------- */
+.reveal{opacity:0; transform:translateY(28px); transition:opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1; transform:translateY(0);}
+.reveal-delay-1{transition-delay:.08s;}
+.reveal-delay-2{transition-delay:.16s;}
+.reveal-delay-3{transition-delay:.24s;}
+</style>
+</head>
+<body>
+
+<!-- =================== NAV =================== -->
+<nav class="nav" id="nav" data-screen-label="nav">
+  <a href="#top" class="nav__logo" aria-label="АТМОСФЕРА">
+    <img src="assets/logo-atmosfera.png" alt="АТМОСФЕРА — столи та стільці"/>
+  </a>
+  <div class="nav__menu" aria-label="меню">
+    <a href="#stoly">Столи</a>
+    <a href="#stiltsi">Стільці</a>
+    <a href="#smart">Новинка</a>
+    <a href="#process">Як це працює</a>
+    <a href="#kontakty">Контакти</a>
+  </div>
+  <div class="nav__cta">
+    <a href="https://t.me/atm_store_4ROOM" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" aria-label="Telegram">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+      Telegram
+    </a>
+    <a href="tel:+380955684142" class="btn btn--gold btn--sm">
+      <span class="dot"></span>
+      Зателефонувати
+    </a>
+  </div>
+</nav>
+
+<!-- =================== HERO =================== -->
+<header class="hero" id="top" data-screen-label="hero">
+  <div class="hero__bg" style="background-image:url('https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944316/02_stul_marmur_zoloto_interier_klienta_krak9l.jpg');"></div>
+
+  <div class="hero__corner">
+    <div>З 2018 — Київ</div>
+    <div><b>10:00 – 20:00</b> · без вихідних</div>
+    <div>ТЦ 4ROOM, шоурум</div>
+  </div>
+
+  <div class="hero__inner">
+    <h1 class="hero__title h-display">
+      <span class="ch">А</span><span class="ch">Т</span><span class="ch">М</span><span class="ch">О</span><span class="ch">С</span><span class="ch">Ф</span><span class="ch">Е</span><span class="ch">Р</span><span class="ch">А</span>
+    </h1>
+
+    <div class="hero__bottom">
+      <p class="hero__tagline">
+        Дизайнерські столи та стільці на&nbsp;замовлення.<br/>
+        <span>Розмір, колір, матеріал —</span> ваші.
+      </p>
+      <div class="hero__ctas">
+        <a href="tel:+380955684142" class="btn btn--gold btn--xl">
+          <span class="dot"></span>
+          Зателефонувати
+        </a>
+        <a href="https://t.me/atm_store_4ROOM" target="_blank" rel="noopener" class="btn btn--ghost-light btn--xl">
+          Написати в Telegram
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__meta">
+    <span>Власне виробництво · доставка день в день</span>
+  </div>
+</header>
+
+<!-- =================== ABOUT / THESES =================== -->
+<section class="about" id="about" data-screen-label="about">
+  <div class="about__head">
+    <div>
+      <div class="eyebrow eyebrow--gold">Про нас — 01</div>
+    </div>
+    <p>
+      Ми робимо меблі, які <em>відчуваєш руками</em>. Кожен стіл і стілець — окреме замовлення, окрема історія. Без склáду, без типових моделей, без компромісів з матеріалом.
+    </p>
+  </div>
+
+  <div class="theses">
+    <article class="thesis reveal">
+      <div class="thesis__num">01 / Виробництво</div>
+      <h3 class="thesis__title">Власний <em>цех</em> у Києві</h3>
+      <p class="thesis__body">Ми не перепродаємо. Усі столи й стільці виготовляємо самі — від креслення до останнього шліфування. Контролюємо якість на кожному етапі.</p>
+      <div class="thesis__icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 38h36M10 38V18l14-8 14 8v20M18 38V26h12v12"/></svg>
+      </div>
+    </article>
+
+    <article class="thesis reveal reveal-delay-1">
+      <div class="thesis__num">02 / Кастомізація</div>
+      <h3 class="thesis__title">Будь-який <em>розмір</em>, колір, матеріал</h3>
+      <p class="thesis__body">Мармур, бетон, дерево, шпон, велюр, екошкіра. Хочете овальний стіл 220×110 у відтінку «капучіно»? Зробимо. Усе під ваш інтер'єр.</p>
+      <div class="thesis__icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="11"/><circle cx="24" cy="24" r="4"/></svg>
+      </div>
+    </article>
+
+    <article class="thesis reveal reveal-delay-2">
+      <div class="thesis__num">03 / Доставка</div>
+      <h3 class="thesis__title">День у <em>день</em> по Києву</h3>
+      <p class="thesis__body">Зі шоуруму — швидко. По всій Україні — Нова Пошта, обережна упаковка, страхування. Оплата частинами від ПриватБанк.</p>
+      <div class="thesis__icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 32h26V12H4zM30 18h8l4 8v6H30zM12 38a3 3 0 100-6 3 3 0 000 6zM36 38a3 3 0 100-6 3 3 0 000 6z"/></svg>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- =================== HORIZONTAL SCROLL =================== -->
+<section class="hscroll" id="stoly" data-screen-label="tables-horizontal">
+  <div class="hscroll__container" id="hscroll-container">
+    <div class="hscroll__sticky">
+
+      <div class="hscroll__head">
+        <div>
+          <div class="eyebrow eyebrow--on-dark">Колекція столів — 02</div>
+          <h2 class="h-section">Дванадцять <em>столів</em>.<br/>Дванадцять характерів.</h2>
+        </div>
+        <div class="hscroll__head-right">
+          <div>Гортайте сторінку</div>
+          <div class="hscroll__counter">
+            <span id="hcCurrent">01</span>
+            <span class="sep">/</span>
+            <span class="total">12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hscroll__track-wrap">
+        <div class="hscroll__track" id="hscroll-track">
+          <!-- 12 cards populated below in HTML for static rendering -->
+        </div>
+      </div>
+
+      <div class="hscroll__hint">
+        <svg width="40" height="10" viewBox="0 0 40 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 5h36M32 1l4 4-4 4"/></svg>
+        <span>Скролл униз — рух праворуч</span>
+      </div>
+      <div class="hscroll__progress"><div class="hscroll__progress-fill" id="hscroll-fill"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CHAIRS =================== -->
+<section class="chairs" id="stiltsi" data-screen-label="chairs">
+  <div class="chairs__head">
+    <div>
+      <div class="eyebrow eyebrow--gold">Стільці — 03</div>
+      <h2 class="h-section">Сидіти <em>красиво</em>.</h2>
+    </div>
+    <p>Велюр, нубук, екошкіра. Барні та обідні. З підлокітниками і без. Понад 40 відтінків тканин — підберемо під ваш стіл або інтер'єр.</p>
+  </div>
+
+  <div class="chairs__grid">
+    <!-- chair cards inserted via template loop below in script -->
+  </div>
+</section>
+
+<!-- =================== SMART CABINET =================== -->
+<section class="smart" id="smart" data-screen-label="smart">
+  <div class="smart__inner">
+
+    <div class="smart__visual">
+      <div class="pic pic--main">
+        <img loading="lazy" src="https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944312/19_tumba_smart_biliy_marmur_bezdrotova_zaryad_qyattn.jpg" alt="Смарт-тумба білий мармур"/>
+      </div>
+      <div class="pic pic--detail-a">
+        <img loading="lazy" src="https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944312/21_tumba_smart_chorniy_marmur_rozetka_usb_lyesem.jpg" alt="Смарт-тумба чорний мармур"/>
+      </div>
+      <div class="pic pic--detail-b">
+        <div class="badge-pulse">
+          <div class="qi">
+            <div class="qi-symbol">⌖</div>
+            <div class="qi-label">Qi · бездротова<br/>зарядка</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="smart__copy">
+      <div class="eyebrow eyebrow--on-dark" style="margin-bottom:24px">Новинка 2026 — 04</div>
+      <h2 class="h-section">Смарт-тумба з&nbsp;<em>характером</em>.</h2>
+      <p class="lede">Сенсорне відкривання. Бездротова зарядка прямо у стільниці. USB та розетки всередині. Мармур або бетон — на ваш вибір.</p>
+
+      <ul class="smart__specs">
+        <li>
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><path d="M8 12h8M12 8v8"/></svg>
+          </span>
+          <span class="txt">Бездротова зарядка Qi <small>Сумісно з iPhone, Samsung, AirPods</small></span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 7h14v10H5zM9 11v2M15 11v2"/></svg>
+          </span>
+          <span class="txt">USB-C, USB-A, дві розетки 220В <small>Все приховано всередині</small></span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6h16v12H4zM4 12h16"/><circle cx="8" cy="9" r=".8" fill="currentColor"/></svg>
+          </span>
+          <span class="txt">Сенсорне відкривання <small>Доторкніться — і шухляда виїжджає</small></span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20l4-12 4 6 4-9 4 15"/></svg>
+          </span>
+          <span class="txt">Мармур або бетон <small>Понад 12 фактур стільниці</small></span>
+        </li>
+      </ul>
+
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="tel:+380955684142" class="btn btn--gold">
+          <span class="dot"></span>
+          Дізнатись ціну
+        </a>
+        <a href="https://t.me/atm_store_4ROOM" target="_blank" rel="noopener" class="btn btn--ghost-light">Запитати в Telegram</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =================== PROCESS =================== -->
+<section class="process" id="process" data-screen-label="process">
+  <div class="process__head">
+    <div>
+      <div class="eyebrow eyebrow--gold">Як це працює — 05</div>
+      <h2 class="h-section">Від ідеї до&nbsp;<em>дому</em> — чотири кроки.</h2>
+    </div>
+    <p>Без шоу-румного тиску, без передоплат «бо так заведено». Спочатку ви знаєте все: вартість, строки, ескіз. Потім — підпис і виробництво.</p>
+  </div>
+
+  <div class="process__steps">
+    <article class="step reveal">
+      <div class="step__num">01 <small>День 1</small></div>
+      <h3 class="step__title">Вибір</h3>
+      <p class="step__body">Дзвінок або візит у шоурум. Підбираємо форму, розмір, матеріал, колір. Показуємо зразки наживо.</p>
+    </article>
+    <article class="step reveal reveal-delay-1">
+      <div class="step__num">02 <small>День 1–3</small></div>
+      <h3 class="step__title">Замовлення</h3>
+      <p class="step__body">Фіксуємо ескіз і ціну. Підписуємо договір. Передоплата 50%. Оплата частинами від ПриватБанк — можлива.</p>
+    </article>
+    <article class="step reveal reveal-delay-2">
+      <div class="step__num">03 <small>14–30 днів</small></div>
+      <h3 class="step__title">Виробництво</h3>
+      <p class="step__body">Наш цех у Києві. Відправляємо вам фото з кожного етапу — ви бачите, як народжується ваш стіл.</p>
+    </article>
+    <article class="step reveal reveal-delay-3">
+      <div class="step__num">04 <small>День Х</small></div>
+      <h3 class="step__title">Доставка</h3>
+      <p class="step__body">По Києву — день у день нашою машиною. По Україні — Новою Поштою з повним страхуванням.</p>
+    </article>
+  </div>
+</section>
+
+<!-- =================== REVIEWS =================== -->
+<section class="reviews" data-screen-label="reviews">
+  <div class="reviews__inner">
+    <div class="reviews__head">
+      <div>
+        <div class="eyebrow eyebrow--gold">Відгуки — 06</div>
+        <h2 class="h-section">Що кажуть <em>клієнти</em>.</h2>
+      </div>
+      <p>Понад 800 столів і 2 000 стільців у домах по всій Україні. Ось три з них.</p>
+    </div>
+
+    <div class="reviews__grid">
+      <article class="review">
+        <div class="review__stars">★★★★★</div>
+        <div class="review__quote-mark">“</div>
+        <p class="review__text">Замовляли овальний стіл з мармуру 200×110 під нашу їдальню. Привезли через три тижні — рівно як на ескізі. На дотик — як скульптура. Гості перше що питають: «Де купували?»</p>
+        <div class="review__author">
+          <div class="review__avatar">О</div>
+          <div>
+            <div class="review__name">Олена Тарасенко</div>
+            <div class="review__sub">Київ · стіл «Marmо»</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="review">
+        <div class="review__stars">★★★★★</div>
+        <div class="review__quote-mark">“</div>
+        <p class="review__text">Шість стільців у бордовому велюрі. Підібрали відтінок під шпалери, навіть зразки тканини передзвонили й уточнили. Привезли в день обіцянки. Сидіти комфортно навіть три години підряд.</p>
+        <div class="review__author">
+          <div class="review__avatar">М</div>
+          <div>
+            <div class="review__name">Максим Іщенко</div>
+            <div class="review__sub">Львів · «Velour 09»</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="review">
+        <div class="review__stars">★★★★★</div>
+        <div class="review__quote-mark">“</div>
+        <p class="review__text">Смарт-тумба біля ліжка з бездротовою зарядкою — це найкраща покупка року. Телефон кладеш — заряджається. Розетка для лампи всередині. Жінка щаслива, я також.</p>
+        <div class="review__author">
+          <div class="review__avatar">А</div>
+          <div>
+            <div class="review__name">Андрій Левченко</div>
+            <div class="review__sub">Київ · смарт-тумба</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CONTACT / FOOTER =================== -->
+<section class="contact" id="kontakty" data-screen-label="contact">
+  <div class="contact__inner">
+
+    <div class="contact__cta">
+      <h2 class="h-section">Поговорімо про&nbsp;<em>ваш</em> стіл.</h2>
+      <div class="contact__cta-side">
+        <p class="lede">Один дзвінок — і ми порахуємо вартість, строки та підберемо матеріал. Без передзвонів менеджерів.</p>
+        <div class="contact__buttons">
+          <a href="tel:+380955684142" class="btn btn--gold btn--xl">
+            <span class="dot"></span>
+            +380 95 568 41 42
+          </a>
+          <a href="https://t.me/atm_store_4ROOM" target="_blank" rel="noopener" class="btn btn--ghost-light btn--xl">Telegram</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact__grid">
+      <div class="contact__col">
+        <h4>Шоурум</h4>
+        <p>ТЦ 4ROOM<br/>Київ</p>
+        <small>10:00 – 20:00 · без вихідних</small>
+      </div>
+      <div class="contact__col">
+        <h4>Зв'язок</h4>
+        <a href="tel:+380955684142">+380 95 568 41 42</a>
+        <small>Дзвінки, Viber, WhatsApp</small>
+      </div>
+      <div class="contact__col">
+        <h4>Соцмережі</h4>
+        <div class="contact__socials">
+          <a href="https://t.me/atm_store_4ROOM" target="_blank" rel="noopener">Telegram →</a>
+          <a href="https://instagram.com/_atm.store_" target="_blank" rel="noopener">Instagram →</a>
+        </div>
+      </div>
+      <div class="contact__col">
+        <h4>Доставка</h4>
+        <p>День у день — Київ.<br/>По Україні — Нова Пошта.</p>
+        <div class="contact__pay">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="18" height="13" rx="1"/><path d="M3 10h18M7 15h3"/></svg>
+          <span>Оплата частинами від&nbsp;<b>ПриватБанк</b></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact__bottom">
+      <div class="contact__bottom-left">
+        <img src="assets/logo-atmosfera.png" alt="АТМОСФЕРА" class="contact__logo"/>
+        <span>© 2026 · atm.store</span>
+      </div>
+      <div>Виготовлено з характером · Київ</div>
+    </div>
+  </div>
+</section>
+
+<!-- floating call CTA for mobile -->
+<a href="tel:+380955684142" class="fab" aria-label="Зателефонувати">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.2 0-2.5-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.4-1.1-.6-2.4-.6-3.6 0-.5-.5-1-1-1H4c-.5 0-1 .5-1 1 0 9.4 7.6 17 17 17 .5 0 1-.5 1-1v-3.4c0-.5-.4-1-1-1z"/></svg>
+</a>
+
+<script>
+/* -------- table cards (horizontal scroll) -------- */
+const TABLES = [
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944315/38_stul_kruhly_biliy_marmur_tsylindry_zolota_baza_n7jo9h.jpg", name:"Marmо Round", sub:"Білий мармур · золота база"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944315/44_stul_oval_biliy_matoviy_tsylindry_oval_biliy_uvymto.jpg", name:"Ovale Bianco", sub:"Овал матовий · циліндри"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944315/45_stul_oval_biliy_matoviy_tsylindry_oval_biliy_styling_h3mqx5.jpg", name:"Ovale Bianco II", sub:"Стайлінг для столової"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944313/25_stul_oval_biliy_marmur_4kolony_bili_edubze.jpg", name:"Quattro", sub:"Овал мармур · 4 колони"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944317/24_stul_oval_biliy_marmur_4kolony_bili_rozkladen_neljno.jpg", name:"Quattro XL", sub:"Розкладний · 4 колони"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944314/34_stul_oval_biliy_marmur_tsylindry_bezheviy_rmrejh.jpg", name:"Beige Oval", sub:"Бежевий мармур · циліндри"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944314/32_stul_oval_beton_siriy_tsylindry_chorniy_suwprb.jpg", name:"Concreto", sub:"Сірий бетон · чорна база"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944313/28_stul_pryamokut_beton_Z_chorna_rozkladen_qldqx2.jpg", name:"Zeta", sub:"Бетон · Z-опора · розкладний"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944313/30_stul_pryamokut_biliy_matoviy_hairpin_zoloto_tdmipd.jpg", name:"Hairpin Oro", sub:"Матовий · золоті шпильки"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944315/42_stul_kruhly_biliy_marmur_X_opory_biliy_eqsbkj.jpg", name:"X-Frame", sub:"Круглий мармур · X-опора"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944316/46_stul_pryamokut_svitliy_marmur_V_ryflen_zolota_chorna_m5btsz.jpg", name:"Riflesso", sub:"Світлий мармур · V-рифлення"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944316/48_stul_pryamokut_antracyt_V_ryflen_chorna_zdqtqs.jpg", name:"Antracite", sub:"Антрацит · чорна V-база"},
+];
+const track = document.getElementById('hscroll-track');
+track.innerHTML = TABLES.map((t,i)=>`
+  <article class="hcard">
+    <img loading="lazy" src="${t.src}" alt="${t.name}"/>
+    <div class="hcard__meta">
+      <div>
+        <div class="hcard__name">${t.name.replace(/(\w+) (\w+)/, '$1 <em>$2</em>')}</div>
+        <div class="hcard__sub">${t.sub}</div>
+      </div>
+      <div class="hcard__num">№${String(i+1).padStart(2,'0')}</div>
+    </div>
+  </article>
+`).join('');
+
+/* -------- chairs grid -------- */
+const CHAIRS = [
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944311/08_stilets_barny_terakota_velur_yx99tu.jpg", name:"Terra", tag:"Барний · велюр"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944316/09_stilets_barny_bordo_velur_whpqjm.jpg", name:"Bordeaux", tag:"Барний · велюр"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944311/10_stilets_chorniy_velur_pidloktniki_jo4w6x.jpg", name:"Nero", tag:"Підлокітники · велюр"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944316/11_stilets_shokolad_ekoshkira_pidloktniki_f2zeoh.jpg", name:"Cacao", tag:"Екошкіра"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944316/12_stilets_kapuchino_velur_rounded_ta73v8.jpg", name:"Cappuccino", tag:"Rounded · велюр"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944312/13_stilets_grafitoviy_velur_pidloktniki_hiuwvw.jpg", name:"Grafite", tag:"Підлокітники"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944312/14_stilets_bezheviy_nubuk_open_back_g2ftun.jpg", name:"Sabbia", tag:"Open back · нубук"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944316/15_stilets_zheltiy_girchytsa_velur_g1t2tm.jpg", name:"Senape", tag:"Гірчиця · велюр"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944312/16_stilets_pisok_velur_rounded_pvrwnw.jpg", name:"Dune", tag:"Rounded · пісок"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944312/17_stilets_mokko_velur_pleated_lbtzsv.jpg", name:"Mokko", tag:"Pleated · велюр"},
+  {src:"https://res.cloudinary.com/detvp6scw/image/upload/q_auto/f_auto/v1779944312/18_stilets_chorniy_ekoshkira_open_back_bpd2yo.jpg", name:"Onyx", tag:"Open back · екошкіра"},
+];
+const chairsGrid = document.querySelector('.chairs__grid');
+chairsGrid.innerHTML = CHAIRS.map((c,i)=>`
+  <article class="chair">
+    <div class="chair__img"><img loading="lazy" src="${c.src}" alt="${c.name}"/></div>
+    <div class="chair__meta">
+      <div class="chair__name">${c.name.split(' ').map((w,wi)=>wi===0?w:`<em>${w}</em>`).join(' ')}</div>
+      <div class="chair__tag">${c.tag}</div>
+    </div>
+  </article>
+`).join('');
+
+/* -------- nav: solidify on scroll + theme detection -------- */
+const nav = document.getElementById('nav');
+const darkSections = ['top','stoly','smart','kontakty'];
+function updateNav(){
+  const y = window.scrollY;
+  nav.classList.toggle('is-solid', y > 40);
+
+  // detect which section the nav is currently overlapping
+  const navMid = 30;
+  let onDark = false;
+  for(const id of darkSections){
+    const el = document.getElementById(id);
+    if(!el) continue;
+    const r = el.getBoundingClientRect();
+    if(r.top <= navMid && r.bottom >= navMid){ onDark = true; break; }
+  }
+  nav.classList.toggle('is-light', !onDark);
+}
+window.addEventListener('scroll', updateNav, {passive:true});
+updateNav();
+
+/* -------- hero: trigger image scale-in -------- */
+requestAnimationFrame(()=>document.querySelector('.hero').classList.add('is-loaded'));
+
+/* -------- reveal on scroll -------- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, {threshold:.12, rootMargin:"0px 0px -10% 0px"});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* -------- horizontal scroll engine -------- */
+const hContainer = document.getElementById('hscroll-container');
+const hTrack     = document.getElementById('hscroll-track');
+const hFill      = document.getElementById('hscroll-fill');
+const hCurrent   = document.getElementById('hcCurrent');
+
+function hscrollUpdate(){
+  if(window.innerWidth <= 900) return; // mobile uses native scroll
+  const rect = hContainer.getBoundingClientRect();
+  const vh = window.innerHeight;
+  // total scrollable inside the pin = container height - vh
+  const scrollable = rect.height - vh;
+  // how far into the pinned region we are (0..1)
+  const traveled = Math.min(Math.max(-rect.top, 0), scrollable);
+  const p = scrollable > 0 ? traveled / scrollable : 0;
+
+  // max translate = trackWidth - viewportWidth + padding compensation
+  const trackWidth = hTrack.scrollWidth;
+  const viewportW  = window.innerWidth;
+  const maxShift = Math.max(trackWidth - viewportW, 0);
+  const x = -maxShift * p;
+  hTrack.style.transform = `translate3d(${x}px, 0, 0)`;
+
+  hFill.style.width = (p*100).toFixed(2)+'%';
+  const idx = Math.min(TABLES.length, Math.max(1, Math.ceil(p * TABLES.length + .0001)));
+  hCurrent.textContent = String(idx).padStart(2,'0');
+}
+window.addEventListener('scroll', hscrollUpdate, {passive:true});
+window.addEventListener('resize', hscrollUpdate);
+hscrollUpdate();
+</script>
+
+</body>
+</html>
